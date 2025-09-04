@@ -1,13 +1,26 @@
 from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain.prompts import PromptTemplate
 from dotenv import load_dotenv
 
 load_dotenv()
 
-numero_dias = 7
-numero_criancas = 2
-atividade = "musica"
+dias = 14
+numero_criancas = 4
+atividade = "star wars"
 
-prompt = f"Crie um roteiro de viagens, para um periodo de {numero_dias}, para uma famili com {numero_criancas} que busca atividades relacionadas a {atividade}"
+prompt_template = PromptTemplate(
+    template=f"""
+    Crie um roteiro de viagem de {dias} dias,
+    para uma familia com {numero_criancas} criancas,
+    que gostam de {atividade}
+    """
+)
+
+prompt = prompt_template.format(
+    dias=dias,
+    numero_criancas=numero_criancas,
+    atividade=atividade,
+)
 
 model = ChatGoogleGenerativeAI(
     model='gemini-2.5-pro',

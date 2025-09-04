@@ -3,3 +3,4 @@ langchain-community
 langgraph
 langchain-chroma
 langchain-google-genai
+python-dotenv
